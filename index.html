@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE-edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Blog</title>
+	
+	<!-- Style Sheet Linkning -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Cookie&family=Sacramento&display=swap" rel="stylesheet">
+</head>
+<body class="shadow-text">
+	<header>
+		<nav id="header-nav" class="navbar navbar-expand-lg navbar-expand-md navbar-dark">
+			<div class="align-content-center">
+				<div class="navbar-header">
+					<div class="navbar-brand col-xs float-right px-5">
+						<a href="index.html">
+							<h1 id="mainhead">Sid's Creations</h1>
+						</a>
+						<p>
+							<span>My blog of creativity<span>
+						</p>
+					</div> <!-- .navbar-brand -->
+
+					<button class="navbar-toggler shadow float-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+				</div> <!-- .navbar-header -->
+			</div><!-- .container -->
+		</nav><!-- #header-nav -->
+		
+		<nav class="navbar navbar-expand-lg navbar-expand-md navbar-dark pb-4" id="nav-list">
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    		<ul class="navbar-nav mx-auto px-0">
+	   				<li class="nav-item shadow">
+	     				<a class="nav-link" href="#">Articles</a>
+	     			</li>
+	     			<li class="nav-item shadow">
+	     				<a class="nav-link" href="#">Poems</a>
+	     			</li>
+	    			<li class="nav-item shadow">
+				   	  	<a class="nav-link" href="#">Thoughts</a>
+		    		</li>
+		    		<li class="nav-item shadow">
+					   	<a class="nav-link" href="#">Quotes</a>
+	    			</li>
+	    		</ul> <!-- .navbar-nav -->
+	  		</div><!-- #navbarSupportedContent -->
+	  	</nav>
+	</header>
+
+	<div id="main-container" class="container">
+		<div class="row">
+			<aside id="left-bar" class="col-lg-2 side-bar py-4 d-none d-lg-block">
+				<a href="" class="link-text">
+					<div class="container">
+						<div class="row mx-auto text-center px-3 py-4">
+							<img class="dp" src="images/sid.jpg" height="100" width="100"><br>
+							<span>Siddharth Hariprasad</span>
+						</div>
+						<div class="row mx-auto text-center" id="left-bar-about">
+							I am a fun loving adventure seeker. I love to travel and think. This blog is one of the places where I let my brain run wild.
+						</div>
+					</div>
+				</a>
+			</aside>
+
+			<div id="main-content" class="col-lg-7 text-center">
+				<section>
+					<span class="article-title">Article 1</span>
+					<p class="article-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente voluptas provident assumenda nihil, adipisci dolores praesentium, mollitia minus explicabo! Minus repudiandae facere expedita nisi, adipisci in maiores tempora inventore veniam.</p>
+				</section>
+				<section>
+					<span class="article-title">Article 2</span>
+					<p class="article-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente voluptas provident assumenda nihil, adipisci dolores praesentium, mollitia minus explicabo! Minus repudiandae facere expedita nisi, adipisci in maiores tempora inventore veniam.</p>
+				</section>
+				<section>
+					<span class="article-title">Article 3</span>
+					<p class="article-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente voluptas provident assumenda nihil, adipisci dolores praesentium, mollitia minus explicabo! Minus repudiandae facere expedita nisi, adipisci in maiores tempora inventore veniam.</p>
+				</section>
+			</div>
+
+			<aside id="left-bar" class="col-lg-2 side-bar py-4 d-block d-sm-block d-lg-none">
+				<a href="" class="link-text">
+					<div class="container">
+						<div class="row mx-auto text-center px-3">
+							<div class="col-12">
+								<img class="dp" src="images/sid.jpg" height="100" width="100"><br>
+								<span>Siddharth Hariprasad</span>
+							</div>
+						</div>
+						<div class="row mx-auto text-center" id="left-bar-about">
+							<div class="col-12">
+								I am a fun loving adventure seeker. I love to travel and think. This blog is one of the places where I let my brain run wild.
+							</div>
+						</div>
+					</div>
+				</a>
+			</aside>
+			<aside id="right-bar" class="col-lg-2 side-bar px-auto py-4">
+				<div class="container">
+					<div class="row mx-auto text-center py-4">
+						<div class="col-12">
+							<span id="right-bar-title">My YouTube Channels</span>
+						</div>
+					</div>
+
+					<div class="row mx-auto text-center">
+						<div class="col-md-6 col-lg-12">
+							<a href="" class="link-text">
+								<img class="dp" src="images/hp.png" height="100" width="100"><br>
+								<span>Hash Play</span><br>
+								<span class="channel-type">(Tech Channel)</span>
+							</a>
+						</div>
+						
+						<div class="col-md-6 col-lg-12">
+							<img class="dp" src="images/sid.jpg" height="100" width="100"><br>
+							<span>Siddharth Hariprasad</span><br>
+							<span class="channel-type">(Vlog Channel)</span>
+						</div>
+					</div>
+				</div>
+			</aside>
+
+		</div>
+	</div>
+
+	<footer class="text-center">
+		Siddharth Hariprasad &copy; 2020
+	</footer>
+	<!-- jQuery (Bootstrap JS plugins depend on it) -->
+	<script src="js/jquery-3.5.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>

@@ -37,16 +37,23 @@
 		<nav class="navbar navbar-expand-lg navbar-expand-md navbar-dark pb-4" id="nav-list">
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    		<ul class="navbar-nav mx-auto px-0">
-	   				<li class="nav-item shadow active">
+	    		<!-- 	<li id="navHomeButton" class="visible-xs active">
+             		<a href="index.html">
+                	<span class="glyphicon glyphicon-home"></span> Home</a>
+            		</li> -->
+	   				<li id="navHome" class=" nav-item shadow active d-block d-sm-block d-md-none">
+	     				<a class="nav-link" href="">Home</a>
+	     			</li>
+	   				<li id="navArticles" class="nav-item shadow" onclick="$b.loadArticlesIndex();">
 	     				<a class="nav-link" href="#">Articles</a>
 	     			</li>
-	     			<li class="nav-item shadow">
+	     			<li id="navPoems" class="nav-item shadow" onclick="$b.loadPoemsIndex();">
 	     				<a class="nav-link" href="#">Poems</a>
 	     			</li>
-	    			<li class="nav-item shadow">
+	    			<li id="navThoughts" class="nav-item shadow" onclick="$b.loadThoughtsIndex();">
 				   	  	<a class="nav-link" href="#">Thoughts</a>
 		    		</li>
-		    		<li class="nav-item shadow">
+		    		<li id="navQuotes" class="nav-item shadow" onclick="$b.loadQuotesIndex();">
 					   	<a class="nav-link" href="#">Quotes</a>
 	    			</li>
 	    		</ul> <!-- .navbar-nav -->
@@ -57,7 +64,7 @@
 	<div id="main-container" class="container">
 		<div class="row">
 			<aside id="left-bar" class="col-lg-2 side-bar py-4 d-none d-lg-block">
-				<a href="" class="link-text">
+				<a href="#" class="link-text" onclick="$b.loadAbout();">
 					<div class="container">
 						<div class="row mx-auto text-center px-3 py-4">
 							<img class="dp" src="images/SID.jpg" height="100" width="100"><br>
@@ -66,26 +73,14 @@
 						<div class="row mx-auto text-center" id="left-bar-about">
 							I am a fun loving adventure seeker. I love to travel and think. This blog is one of the places where I let my brain run wild.
 						</div>
-					</div>
+					</div> <!-- .container -->
 				</a>
-			</aside>
+			</aside> <!-- #left-bar -->
 
 			<div id="main-content" class="col-lg-7 text-center">
-				<section>
-					<span class="article-title">Article 1</span>
-					<p class="article-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente voluptas provident assumenda nihil, adipisci dolores praesentium, mollitia minus explicabo! Minus repudiandae facere expedita nisi, adipisci in maiores tempora inventore veniam.</p>
-				</section>
-				<section>
-					<span class="article-title">Article 2</span>
-					<p class="article-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente voluptas provident assumenda nihil, adipisci dolores praesentium, mollitia minus explicabo! Minus repudiandae facere expedita nisi, adipisci in maiores tempora inventore veniam.</p>
-				</section>
-				<section>
-					<span class="article-title">Article 3</span>
-					<p class="article-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente voluptas provident assumenda nihil, adipisci dolores praesentium, mollitia minus explicabo! Minus repudiandae facere expedita nisi, adipisci in maiores tempora inventore veniam.</p>
-				</section>
-			</div>
+			</div> <!-- #main-content -->
 
-			<aside id="left-bar" class="col-lg-2 side-bar py-4 d-block d-sm-block d-lg-none">
+			<aside id="left-bar-bottom" class="col-lg-2 side-bar py-4 d-block d-sm-block d-lg-none">
 				<a href="" class="link-text">
 					<div class="container">
 						<div class="row mx-auto text-center px-3">
@@ -94,7 +89,7 @@
 								<span>Siddharth Hariprasad</span>
 							</div>
 						</div>
-						<div class="row mx-auto text-center" id="left-bar-about">
+						<div id="left-bar-about-bottom" class="row mx-auto text-center">
 							<div class="col-12">
 								I am a fun loving adventure seeker. I love to travel and think. This blog is one of the places where I let my brain run wild.
 							</div>
@@ -129,9 +124,8 @@
 					</div>
 				</div>
 			</aside>
-
 		</div>
-	</div>
+	</div> <!-- #main-container -->
 
 	<footer class="text-center">
 		Siddharth Hariprasad &copy; 2020
@@ -139,6 +133,7 @@
 	<!-- jQuery (Bootstrap JS plugins depend on it) -->
 	<script src="js/jquery-3.5.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/ajax-utils.js"></script>
 	<script src="js/script.js"></script>
 </body>
 </html>

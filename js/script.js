@@ -19,12 +19,20 @@ $(function () { // to do when the page loads
 	});
 });
 
+
 (function (global) {
 	var b = {};
 
 	var homeHtml = "snippets/home-snippet.html";
 	var articlesHtml = "snippets/article-index-snippet.html";
 	var allArticlesUrl = "JSON/articles.json"
+	var poemsHtml = "snippets/poem-index-snippet.html";
+	var allPoemsUrl = "JSON/poems.json"
+	var thoughtsHtml = "snippets/thought-index-snippet.html";
+	var allThoughtsUrl = "JSON/thoughts.json"
+	var quotesHtml = "snippets/quote-snippet.html";
+	var allQuotesUrl = "JSON/quotes.json";
+	var singleArticleHtml = "snippets/singleArticle-snippet.html"
 
 	// Convenience function for inserting innerHTML for 'select'
   	var insertHtml = function (selector, html) {
@@ -103,15 +111,12 @@ $(function () { // to do when the page loads
 
 		// On first load, show home view
 		showLoading("#main-content");
-
 		$ajaxUtils.sendGetRequest(
 			homeHtml, 
 			function (responseText) {
 				document.querySelector("#main-content").innerHTML = responseText;
 			},
 		false);
-
-		// $b.loadArticlesIndex();
 	});
 
 	// Load Articles Index
@@ -126,16 +131,15 @@ $(function () { // to do when the page loads
 		$ajaxUtils.sendGetRequest(
           articlesHtml,
           function (articlesHtml) {
-            // Switch CSS class active to menu button
+            // Switch CSS class active to Articles button
             switchToActive("Articles");
-            var articlesViewHtml =
-              buildArticlesViewHtml(articles,articlesHtml);
+            var articlesViewHtml = buildArticlesViewHtml(articles,articlesHtml);
             insertHtml("#main-content", articlesViewHtml);
           },
           false);
 	}
 
-	// Using articles data and snippets html build categories view HTML to be inserted into page
+	// Using articles data and snippets html build articles view HTML to be inserted into page
 	function buildArticlesViewHtml(articles,articlesHtml) {
 		var finalHTML = "";
 
@@ -151,10 +155,120 @@ $(function () { // to do when the page loads
 			html = insertProperty(html,"article_info", article_info);
 			finalHTML += html;
 		}
-
 		return finalHTML;
 	}
 
+	// Load Poems Index
+	b.loadPoemsIndex = function () {
+		showLoading("#main-content");
+		$ajaxUtils.sendGetRequest(allPoemsUrl,buildAndShowPoemsHtml);
+	};
+
+	// Builds HTML for the Poems Index page based on the data from the server
+	function buildAndShowPoemsHtml(poems) {
+		// Retrive Poems Index Snippet
+		$ajaxUtils.sendGetRequest(
+			poemsHtml, 
+			function (poemsHtml) {
+			// Switch CSS class active to Poems button
+			switchToActive("Poems");
+			var poemsViewHtml = buildPoemsViewHtml(poems,poemsHtml);
+			insertHtml("#main-content",poemsViewHtml);
+		},
+		false);
+	}
+
+	// Using poems data and snippets html build poems view HTML to be inserted into page
+	function buildPoemsViewHtml(poems,poemsHtml) {
+		var finalHTML = "";
+		// Loop over Poems
+		for (var i = 0; i < poems.length; i++) {
+			// insert poem values
+			var html = poemsHtml;
+			var poem_id = poems[i].poem_id;
+			var poem_heading = poems[i].poem_heading;
+			var poem_info = poems[i].poem_info;
+			html = insertProperty(html,"poem_id",poem_id);
+			html = insertProperty(html,"poem_heading",poem_heading);
+			html = insertProperty(html,"poem_info",poem_info);
+			finalHTML += html;
+		}
+		return finalHTML;
+	}
+
+	// Load Thoughts Index
+	b.loadThoughtsIndex = function () {
+		showLoading("#main-content");
+		$ajaxUtils.sendGetRequest(allThoughtsUrl,buildAndShowThoughtsHtml);
+	};
+
+	// Builds HTML for the Thoughts Index page based on the data from the server
+	function buildAndShowThoughtsHtml(thoughts) {
+		// Retrive Thoughts Index Snippet
+		$ajaxUtils.sendGetRequest(
+			thoughtsHtml, 
+			function (thoughtsHtml) {
+			// Switch CSS class active to Thoughts button
+			switchToActive("Thoughts");
+			var thoughtsViewHtml = buildThoughtsViewHtml(thoughts,thoughtsHtml);
+			insertHtml("#main-content",thoughtsViewHtml);
+		},
+		false);
+	}
+
+	// Using thoughts data and snippets html build thoughts view HTML to be inserted into page
+	function buildThoughtsViewHtml(thoughts,thoughtsHtml) {
+		var finalHTML = "";
+		// Loop over Thoughts
+		for (var i = 0; i < thoughts.length; i++) {
+			// insert thoughts values
+			var html = thoughtsHtml;
+			var thought_id = thoughts[i].thought_id;
+			var thought_heading = thoughts[i].thought_heading;
+			var thought_info = thoughts[i].thought_info;
+			html = insertProperty(html,"thought_id",thought_id);
+			html = insertProperty(html,"thought_heading",thought_heading);
+			html = insertProperty(html,"thought_info",thought_info);
+			finalHTML += html;
+		}
+		return finalHTML;
+	}
+
+	// Load Quotes
+	b.loadQuotes = function () {
+		showLoading("#main-content");
+		$ajaxUtils.sendGetRequest(allQuotesUrl,buildAndShowQuotesHtml);
+	};
+
+	// Builds HTML for the Quotes Index page based on the data from the server
+	function buildAndShowQuotesHtml(quotes) {
+		// Retrive Quotes Index Snippet
+		$ajaxUtils.sendGetRequest(
+			quotesHtml, 
+			function (quotesHtml) {
+			// Switch CSS class active to Quotes button
+			switchToActive("Quotes");
+			var quotesViewHtml = buildQuotesViewHtml(quotes,quotesHtml);
+			insertHtml("#main-content",quotesViewHtml);
+		},
+		false);
+	}
+
+	// Using quotes data and snippets html build quotes view HTML to be inserted into page
+	function buildQuotesViewHtml(quotes,quotesHtml) {
+		var finalHTML = "";
+		// Loop over Quotes
+		for (var i = 0; i < quotes.length; i++) {
+			// insert quotes values
+			var html = quotesHtml;
+			var quote_heading = quotes[i].quote_heading;
+			var quote_content = quotes[i].quote_content;
+			html = insertProperty(html,"quote_heading",quote_heading);
+			html = insertProperty(html,"quote_content",quote_content);
+			finalHTML += html;
+		}
+		return finalHTML;
+	}
 
   	global.$b = b;
 })(window);

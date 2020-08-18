@@ -49,6 +49,11 @@ body {
 
 /** MAIN BODY **/
 
+#main-container.container {
+	padding: 0;
+	margin: auto;
+}
+
 /* SIDE BAR */
 
 .side-bar {

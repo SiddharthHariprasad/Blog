@@ -1,14 +1,14 @@
 [
 	{
-		"poem_id":1,
+		"poem_id":"1",
+		"poem_url":"JSON/poems/poem_1.json",
 		"poem_heading":"The man in the Wheel Chair",
-		"poem_info":"Poem about a man in a wheelchair",
-		"poem_content":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro vero magni doloribus dolore, animi ducimus? Aspernatur aperiam quis tenetur inventore ipsum dolorem doloribus itaque, officiis natus, animi perferendis ut culpa!"
+		"poem_info":"Poem about a man in a wheelchair"
 	},
 	{
-		"poem_id":2,
+		"poem_id":"2",
+		"poem_url":"JSON/poems/poem_2.json",
 		"poem_heading":"The Night When It Rained",
-		"poem_info":"Poem about a rainy night.",
-		"poem_content":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro vero magni doloribus dolore, animi ducimus? Aspernatur aperiam quis tenetur inventore ipsum dolorem doloribus itaque, officiis natus, animi perferendis ut culpa!"
+		"poem_info":"Poem about a rainy night."
 	}
 ]

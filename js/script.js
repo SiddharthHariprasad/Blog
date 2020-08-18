@@ -32,7 +32,12 @@ $(function () { // to do when the page loads
 	var allThoughtsUrl = "JSON/thoughts.json"
 	var quotesHtml = "snippets/quote-snippet.html";
 	var allQuotesUrl = "JSON/quotes.json";
-	var singleArticleHtml = "snippets/singleArticle-snippet.html"
+	var singleArticleHtml = "snippets/singleArticle-snippet.html";
+	var articleUrl = "";
+	var singlePoemHtml = "snippets/singlePoem-snippet.html";
+	var poemUrl = "";
+	var singleThoughtHtml = "snippets/singleThought-snippet.html";
+	var thoughtUrl = "";
 
 	// Convenience function for inserting innerHTML for 'select'
   	var insertHtml = function (selector, html) {
@@ -147,10 +152,10 @@ $(function () { // to do when the page loads
 		for (var i = 0; i < articles.length; i++) {
 			// insert article values
 			var html = articlesHtml;
-			var article_id = articles[i].article_id;
+			var article_url = articles[i].article_url;
 			var article_heading = articles[i].article_heading;
 			var article_info = articles[i].article_info;
-			html = insertProperty(html,"article_id", article_id);
+			html = insertProperty(html,"article_url", article_url);
 			html = insertProperty(html,"article_heading", article_heading);
 			html = insertProperty(html,"article_info", article_info);
 			finalHTML += html;
@@ -185,10 +190,10 @@ $(function () { // to do when the page loads
 		for (var i = 0; i < poems.length; i++) {
 			// insert poem values
 			var html = poemsHtml;
-			var poem_id = poems[i].poem_id;
+			var poem_url = poems[i].poem_url;
 			var poem_heading = poems[i].poem_heading;
 			var poem_info = poems[i].poem_info;
-			html = insertProperty(html,"poem_id",poem_id);
+			html = insertProperty(html,"poem_url",poem_url);
 			html = insertProperty(html,"poem_heading",poem_heading);
 			html = insertProperty(html,"poem_info",poem_info);
 			finalHTML += html;
@@ -223,10 +228,10 @@ $(function () { // to do when the page loads
 		for (var i = 0; i < thoughts.length; i++) {
 			// insert thoughts values
 			var html = thoughtsHtml;
-			var thought_id = thoughts[i].thought_id;
+			var thought_url = thoughts[i].thought_url;
 			var thought_heading = thoughts[i].thought_heading;
 			var thought_info = thoughts[i].thought_info;
-			html = insertProperty(html,"thought_id",thought_id);
+			html = insertProperty(html,"thought_url",thought_url);
 			html = insertProperty(html,"thought_heading",thought_heading);
 			html = insertProperty(html,"thought_info",thought_info);
 			finalHTML += html;
@@ -265,6 +270,115 @@ $(function () { // to do when the page loads
 			var quote_content = quotes[i].quote_content;
 			html = insertProperty(html,"quote_heading",quote_heading);
 			html = insertProperty(html,"quote_content",quote_content);
+			finalHTML += html;
+		}
+		return finalHTML;
+	}
+
+
+	// Load single Article
+	b.loadArticle = function (articleUrl) {
+		showLoading("#main-content");
+		$ajaxUtils.sendGetRequest(articleUrl,buildAndShowSingleArticleHTML);
+	};
+
+	// Builds HTML for Single Article page based on the data from the server
+	function buildAndShowSingleArticleHTML(article) {
+		// Retrive Single Article Snippet
+		$ajaxUtils.sendGetRequest(
+			singleArticleHtml,
+			function (singleArticleHtml) {
+			// Switch CSS class active to Articles button
+			switchToActive("Articles");
+			var singleArticleViewHtml = buildSingleArticleViewHtml(article,singleArticleHtml);
+			insertHtml("#main-content",singleArticleViewHtml);
+		},
+		false);
+	}
+
+	// Usingsingle article data and snippets html build single page HTML to be inserted into page
+	function buildSingleArticleViewHtml(article,singleArticleHtml) {
+		var finalHTML = "";
+		// Loop over the Article
+		for (var i = article.length - 1; i >= 0; i--) {
+			// insert article values
+			var html = singleArticleHtml;
+			var article_heading = article[i].article_heading;
+			var article_content = article[i].article_content;
+			html = insertProperty(html,"article_heading",article_heading);
+			html = insertProperty(html,"article_content",article_content);
+			finalHTML += html;
+		}
+		return finalHTML;
+	}
+
+	// Load single Poem
+	b.loadPoem = function (poemUrl) {
+		showLoading("#main-content");
+		$ajaxUtils.sendGetRequest(poemUrl,buildAndShowSinglePoemHTML);
+	};
+
+	// Builds HTML for Single Poem page based on the data from the server
+	function buildAndShowSinglePoemHTML(poem) {
+		// Retrive Single Poem Snippet
+		$ajaxUtils.sendGetRequest(
+			singlePoemHtml,
+			function (singlePoemHtml) {
+			// Switch CSS class active to Poems button
+			switchToActive("Poems");
+			var singlePoemViewHtml = buildSinglePoemViewHtml(poem,singlePoemHtml);
+			insertHtml("#main-content",singlePoemViewHtml);
+		},
+		false);
+	}
+
+	// Usingsingle Poem data and snippets html build single page HTML to be inserted into page
+	function buildSinglePoemViewHtml(poem,singlePoemHtml) {
+		var finalHTML = "";
+		// Loop over the Poem
+		for (var i = poem.length - 1; i >= 0; i--) {
+			// insert poem values
+			var html = singlePoemHtml;
+			var poem_heading = poem[i].poem_heading;
+			var poem_content = poem[i].poem_content;
+			html = insertProperty(html,"poem_heading",poem_heading);
+			html = insertProperty(html,"poem_content",poem_content);
+			finalHTML += html;
+		}
+		return finalHTML;
+	}
+
+	// Load single Thought
+	b.loadThought = function (thoughtUrl) {
+		showLoading("#main-content");
+		$ajaxUtils.sendGetRequest(thoughtUrl,buildAndShowSingleThoughtHTML);
+	};
+
+	// Builds HTML for Single Thought page based on the data from the server
+	function buildAndShowSingleThoughtHTML(thought) {
+		// Retrive Single Thought Snippet
+		$ajaxUtils.sendGetRequest(
+			singleThoughtHtml,
+			function (singleThoughtHtml) {
+			// Switch CSS class active to Thoughts button
+			switchToActive("Thoughts");
+			var singleThoughtViewHtml = buildSingleThoughtViewHtml(thought,singleThoughtHtml);
+			insertHtml("#main-content",singleThoughtViewHtml);
+		},
+		false);
+	}
+
+	// Usingsingle Thought data and snippets html build single page HTML to be inserted into page
+	function buildSingleThoughtViewHtml(thought,singleThoughtHtml) {
+		var finalHTML = "";
+		// Loop over the Poem
+		for (var i = thought.length - 1; i >= 0; i--) {
+			// insert poem values
+			var html = singleThoughtHtml;
+			var thought_heading = thought[i].thought_heading;
+			var thought_content = thought[i].thought_content;
+			html = insertProperty(html,"thought_heading",thought_heading);
+			html = insertProperty(html,"thought_content",thought_content);
 			finalHTML += html;
 		}
 		return finalHTML;

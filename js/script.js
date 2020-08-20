@@ -33,13 +33,16 @@ $(function () { // to do when the page loads
 	var quotesHtml = "snippets/quote-snippet.html";
 	var allQuotesUrl = "JSON/quotes.json";
 	var singleArticleHtml = "snippets/singleArticle-snippet.html";
-	var articleUrl = "";
+	// var articleUrl = "";
 	var singlePoemHtml = "snippets/singlePoem-snippet.html";
-	var poemUrl = "";
+	// var poemUrl = "";
 	var singleThoughtHtml = "snippets/singleThought-snippet.html";
-	var thoughtUrl = "";
+	// var thoughtUrl = "";
 	var aboutHtml = "snippets/about-snippet.html";
 	var svgHtml = "snippets/social-icons-snippet.html";
+	var articleID = "";
+	var poemID = "";
+	var thoughtID = "";
 
 	// Convenience function for inserting innerHTML for 'select'
   	var insertHtml = function (selector, html) {
@@ -163,10 +166,10 @@ $(function () { // to do when the page loads
 		for (var i = 0; i < articles.length; i++) {
 			// insert article values
 			var html = articlesHtml;
-			var article_url = articles[i].article_url;
+			var article_id = articles[i].article_id;
 			var article_heading = articles[i].article_heading;
 			var article_info = articles[i].article_info;
-			html = insertProperty(html,"article_url", article_url);
+			html = insertProperty(html,"article_id", article_id);
 			html = insertProperty(html,"article_heading", article_heading);
 			html = insertProperty(html,"article_info", article_info);
 			finalHTML += html;
@@ -201,10 +204,10 @@ $(function () { // to do when the page loads
 		for (var i = 0; i < poems.length; i++) {
 			// insert poem values
 			var html = poemsHtml;
-			var poem_url = poems[i].poem_url;
+			var poem_id = poems[i].poem_id;
 			var poem_heading = poems[i].poem_heading;
 			var poem_info = poems[i].poem_info;
-			html = insertProperty(html,"poem_url",poem_url);
+			html = insertProperty(html,"poem_id",poem_id);
 			html = insertProperty(html,"poem_heading",poem_heading);
 			html = insertProperty(html,"poem_info",poem_info);
 			finalHTML += html;
@@ -239,10 +242,10 @@ $(function () { // to do when the page loads
 		for (var i = 0; i < thoughts.length; i++) {
 			// insert thoughts values
 			var html = thoughtsHtml;
-			var thought_url = thoughts[i].thought_url;
+			var thought_id = thoughts[i].thought_id;
 			var thought_heading = thoughts[i].thought_heading;
 			var thought_info = thoughts[i].thought_info;
-			html = insertProperty(html,"thought_url",thought_url);
+			html = insertProperty(html,"thought_id",thought_id);
 			html = insertProperty(html,"thought_heading",thought_heading);
 			html = insertProperty(html,"thought_info",thought_info);
 			finalHTML += html;
@@ -288,109 +291,119 @@ $(function () { // to do when the page loads
 
 
 	// Load single Article
-	b.loadArticle = function (articleUrl) {
+	b.loadArticle = function (aID) {
 		showLoading("#main-content");
-		$ajaxUtils.sendGetRequest(articleUrl,buildAndShowSingleArticleHTML);
+		articleID = aID;
+		$ajaxUtils.sendGetRequest(allArticlesUrl,buildAndShowSingleArticleHTML);
 	};
 
 	// Builds HTML for Single Article page based on the data from the server
-	function buildAndShowSingleArticleHTML(article) {
+	function buildAndShowSingleArticleHTML(articles) {
 		// Retrive Single Article Snippet
 		$ajaxUtils.sendGetRequest(
 			singleArticleHtml,
 			function (singleArticleHtml) {
 			// Switch CSS class active to Articles button
 			switchToActive("Articles");
-			var singleArticleViewHtml = buildSingleArticleViewHtml(article,singleArticleHtml);
+			var singleArticleViewHtml = buildSingleArticleViewHtml(articles,singleArticleHtml);
 			insertHtml("#main-content",singleArticleViewHtml);
 		},
 		false);
 	}
 
-	// Usingsingle article data and snippets html build single page HTML to be inserted into page
-	function buildSingleArticleViewHtml(article,singleArticleHtml) {
+	// Using single article data and snippets html build single page HTML to be inserted into page
+	function buildSingleArticleViewHtml(articles,singleArticleHtml) {
 		var finalHTML = "";
 		// Loop over the Article
-		for (var i = article.length - 1; i >= 0; i--) {
+		// console.log(articleID);
+		for (var i = articles.length - 1; i >= 0; i--) {
 			// insert article values
-			var html = singleArticleHtml;
-			var article_heading = article[i].article_heading;
-			var article_content = article[i].article_content;
-			html = insertProperty(html,"article_heading",article_heading);
-			html = insertProperty(html,"article_content",article_content);
-			finalHTML += html;
+			if (articles[i].article_id == articleID) {
+				var html = singleArticleHtml;
+				var article_heading = articles[i].article_heading;
+				var article_content = articles[i].article_content;
+				html = insertProperty(html,"article_heading",article_heading);
+				html = insertProperty(html,"article_content",article_content);
+				finalHTML += html;
+			}
 		}
 		return finalHTML;
 	}
 
 	// Load single Poem
-	b.loadPoem = function (poemUrl) {
+	b.loadPoem = function (pID) {
 		showLoading("#main-content");
-		$ajaxUtils.sendGetRequest(poemUrl,buildAndShowSinglePoemHTML);
+		poemID = pID;
+		$ajaxUtils.sendGetRequest(allPoemsUrl,buildAndShowSinglePoemHTML);
 	};
 
 	// Builds HTML for Single Poem page based on the data from the server
-	function buildAndShowSinglePoemHTML(poem) {
+	function buildAndShowSinglePoemHTML(poems) {
 		// Retrive Single Poem Snippet
 		$ajaxUtils.sendGetRequest(
 			singlePoemHtml,
 			function (singlePoemHtml) {
 			// Switch CSS class active to Poems button
 			switchToActive("Poems");
-			var singlePoemViewHtml = buildSinglePoemViewHtml(poem,singlePoemHtml);
+			var singlePoemViewHtml = buildSinglePoemViewHtml(poems,singlePoemHtml);
 			insertHtml("#main-content",singlePoemViewHtml);
 		},
 		false);
 	}
 
-	// Usingsingle Poem data and snippets html build single page HTML to be inserted into page
-	function buildSinglePoemViewHtml(poem,singlePoemHtml) {
+	// Using single Poem data and snippets html build single page HTML to be inserted into page
+	function buildSinglePoemViewHtml(poems,singlePoemHtml) {
 		var finalHTML = "";
 		// Loop over the Poem
-		for (var i = poem.length - 1; i >= 0; i--) {
-			// insert poem values
-			var html = singlePoemHtml;
-			var poem_heading = poem[i].poem_heading;
-			var poem_content = poem[i].poem_content;
-			html = insertProperty(html,"poem_heading",poem_heading);
-			html = insertProperty(html,"poem_content",poem_content);
-			finalHTML += html;
+		for (var i = poems.length - 1; i >= 0; i--) {
+			if (poems[i].poem_id == poemID) {
+				// insert poem values
+				var html = singlePoemHtml;
+				var poem_heading = poems[i].poem_heading;
+				var poem_content = poems[i].poem_content;
+				html = insertProperty(html,"poem_heading",poem_heading);
+				html = insertProperty(html,"poem_content",poem_content);
+				finalHTML += html;
+			}
 		}
 		return finalHTML;
 	}
 
 	// Load single Thought
-	b.loadThought = function (thoughtUrl) {
+	b.loadThought = function (tID) {
 		showLoading("#main-content");
-		$ajaxUtils.sendGetRequest(thoughtUrl,buildAndShowSingleThoughtHTML);
+		thoughtID = tID;
+		$ajaxUtils.sendGetRequest(allThoughtsUrl,buildAndShowSingleThoughtHTML);
 	};
 
 	// Builds HTML for Single Thought page based on the data from the server
-	function buildAndShowSingleThoughtHTML(thought) {
+	function buildAndShowSingleThoughtHTML(thoughts) {
 		// Retrive Single Thought Snippet
 		$ajaxUtils.sendGetRequest(
 			singleThoughtHtml,
 			function (singleThoughtHtml) {
 			// Switch CSS class active to Thoughts button
 			switchToActive("Thoughts");
-			var singleThoughtViewHtml = buildSingleThoughtViewHtml(thought,singleThoughtHtml);
+			var singleThoughtViewHtml = buildSingleThoughtViewHtml(thoughts,singleThoughtHtml);
 			insertHtml("#main-content",singleThoughtViewHtml);
 		},
 		false);
 	}
 
-	// Usingsingle Thought data and snippets html build single page HTML to be inserted into page
-	function buildSingleThoughtViewHtml(thought,singleThoughtHtml) {
+	// Using single Thought data and snippets html build single page HTML to be inserted into page
+	function buildSingleThoughtViewHtml(thoughts,singleThoughtHtml) {
 		var finalHTML = "";
 		// Loop over the Poem
-		for (var i = thought.length - 1; i >= 0; i--) {
-			// insert poem values
-			var html = singleThoughtHtml;
-			var thought_heading = thought[i].thought_heading;
-			var thought_content = thought[i].thought_content;
-			html = insertProperty(html,"thought_heading",thought_heading);
-			html = insertProperty(html,"thought_content",thought_content);
-			finalHTML += html;
+		for (var i = thoughts.length - 1; i >= 0; i--) {
+			if (thoughts[i].thought_id == thoughtID) {
+				// insert poem values
+				var html = singleThoughtHtml;
+				var thought_heading = thoughts[i].thought_heading;
+				var thought_content = thoughts[i].thought_content;
+				html = insertProperty(html,"thought_heading",thought_heading);
+				html = insertProperty(html,"thought_content",thought_content);
+				finalHTML += html;
+			}
 		}
 		return finalHTML;
 	}

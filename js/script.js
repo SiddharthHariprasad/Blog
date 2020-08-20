@@ -474,37 +474,5 @@ $(function () { // to do when the page loads
 		document.querySelector('#main-content').className = classes;
 	}
 
-	// // Load Home Page and then the required Page when navigating from About Page
-	// b.loadFromAbout = function(navigator) {
-	// 	// console.log(navigator);
-	// 	showLoading("#body");
-	// 	// $ajaxUtils.sendGetRequest(
-	// 	// 	indexHtml, 
-	// 	// 	function (responseText) {
-	// 	// 		document.querySelector("#body").innerHTML = responseText;
-	// 	// 	},
-	// 	// false);
-	// 	window.location.href = indexHtml;
-	// 	switch (navigator)
-	// 	{
-	// 		case 'Articles':
-	// 			b.loadArticlesIndex();
-	// 			break;
-	// 		case 'Poems':
-	// 			b.loadPoemsIndex();
-	// 			break;
-	// 		case 'Thoughts':
-	// 			b.loadThoughtsIndex();
-	// 			break;
-	// 		case 'Quotes':
-	// 			b.loadQuotesIndex();
-	// 			break;
-	// 		case 'About':
-	// 			b.loadAboutIndex();
-	// 			break;
-	// 		default: console.log("ERROR");
-	// 	}
-	// }
-
   	global.$b = b;
 })(window);

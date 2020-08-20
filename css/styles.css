@@ -173,8 +173,28 @@ footer {
 	margin-right: 15px;
 }
 
+#about-page-top-name {
+	padding-bottom: 15px;
+	font-size: 2em;
+	font-weight: bold;
+}
+
+#about-page-bottom-title {
+	padding-bottom: 15px;
+	font-size: 2em;
+	font-weight: bold;
+}
+
 #about-page-bottom {
 	margin-right: 15px;	
+}
+
+#about-page-book {
+	margin-right: 15px;	
+}
+
+#book-title {
+	font-size: 2em;
 }
 
 #contact-me {
@@ -211,7 +231,18 @@ div#socials > a {
 	font-size: 15em;
 }
 
+#book-frame {
+	background-color: #2e2e2e !important;
+}
 
+
+.kp-bookcard-container {
+	background: #2e2e2e !important;
+}
+
+.kp-bookcard-button, .kp-bookcard-primary-button {
+	color: #e8e8e8 !important;
+}
 
 /* END ABOUT PAGE */
 
@@ -258,8 +289,8 @@ div#socials > a {
 	}
 
 	.social-icons {
-		height: 1.5em;
-		width: 1.5em;
+		height: 1.3em;
+		width: 1.3em;
 	}
 
 	div#socials > a {
@@ -314,8 +345,8 @@ div#socials > a {
 	}
 
 	.social-icons {
-		height: 2.2em;
-		width: 2.2em;
+		height: 2em;
+		width: 2em;
 	}
 
 	div#socials > a {

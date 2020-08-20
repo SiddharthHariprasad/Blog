@@ -1,13 +1,5 @@
 <svg overflow="scroll" viewBox="7.592 13.58 48.54 36.42" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor">
-	<linearGradient id="a" gradientUnits="userSpaceOnUse" x1="14.001" x2="32" y1="30.744" y2="30.744">
-		<stop offset="0" stop-color="#c8c8c8"/><stop offset="1" stop-color="#cdcdcd"/>
-	</linearGradient>
-	<linearGradient id="b" gradientUnits="userSpaceOnUse" x1="28.665" x2="50" y1="36.447" y2="36.447">
-		<stop offset="0" stop-color="#d9d9d9"/><stop offset="1" stop-color="#e2e2e2"/>
-	</linearGradient>
-	<path stroke="#ffffff" stroke-width=".5" d="M53 50H11a3 3 0 01-3-3V17a3 3 0 013-3h42a3 3 0 013 3v30a3 3 0 01-3 3z" />
-	<path stroke="#ffffff" stroke-width=".5" d="M14 50h-3a3 3 0 01-3-3V17a3 3 0 116 0z" />
-	<path stroke="#ffffff" stroke-width=".5" d="M50 50h3a3 3 0 003-3V17a3 3 0 10-6 0z" />
-	<path stroke="#ffffff" stroke-width=".5" d="M54.718 19.46a3 3 0 10-3.436-4.92l-19.28 14.037-.002.001-.002-.001-19.28-14.037a3 3 0 00-3.436 4.92l-.08-.059L32 36m22.799-16.599L32 36" />
-	<path stroke="#ffffff" stroke-width=".5" d="M53 14c-.639 0-1.232.2-1.718.54l-19.28 14.037-.002.001-.002-.001-19.28-14.037A2.988 2.988 0 0011 14z"/>
+	<path d="M14 50h-3a3 3 0 01-3-3V17a3 3 0 116 0z"/>
+	<path d="M50 50h3a3 3 0 003-3V17a3 3 0 10-6 0z"/>
+	<path d="M54.718 19.46a3 3 0 10-3.436-4.92l-19.28 14.037-.002.001-.002-.001-19.28-14.037a3 3 0 00-3.436 4.92l-.08-.059L32 36m22.799-16.599L32 36"/>
 </svg>

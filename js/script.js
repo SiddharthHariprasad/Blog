@@ -311,9 +311,7 @@ $(function () { // to do when the page loads
 		for (var i = 0; i < quotes.length; i++) {
 			// insert quotes values
 			var html = quotesHtml;
-			var quote_heading = quotes[i].quote_heading;
 			var quote_content = quotes[i].quote_content;
-			html = insertProperty(html,"quote_heading",quote_heading);
 			html = insertProperty(html,"quote_content",quote_content);
 			finalHTML += html;
 		}

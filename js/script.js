@@ -23,6 +23,7 @@ $(function () { // to do when the page loads
 (function (global) {
 	var b = {};
 
+	var indexHtml = "index.html";
 	var homeHtml = "snippets/home-snippet.html";
 	var articlesHtml = "snippets/article-index-snippet.html";
 	var allArticlesUrl = "JSON/articles.json"
@@ -125,6 +126,32 @@ $(function () { // to do when the page loads
 	    }
   	};
 
+  	var resetClassAndStyle = function () {
+  		// Reseting the class names and style.display
+  		document.querySelector("#left-bar").style.display = 'block';
+		document.querySelector("#left-bar-bottom").style.display = 'block';
+		document.querySelector("#right-bar").style.display = 'block';
+
+		var classes;
+
+		classes = document.querySelector('#left-bar').className;
+		classes = "col-lg-2 side-bar py-4 d-none d-lg-block";
+		document.querySelector('#left-bar').className = classes;
+
+		classes = document.querySelector('#left-bar-bottom').className;
+		classes = "col-lg-2 side-bar py-4 d-block d-sm-block d-lg-none";
+		document.querySelector('#left-bar-bottom').className = classes;
+
+		classes = document.querySelector('#right-bar').className;
+		classes = "col-lg-2 side-bar px-auto py-4";
+		document.querySelector('#right-bar').className = classes;
+
+		classes = document.querySelector('#main-content').className;
+		classes = classes.replace(new RegExp("col-lg-12","g"),"col-lg-7");
+		document.querySelector('#main-content').className = classes;
+
+  	}
+
 	// On page load (before images or CSS)
 	document.addEventListener("DOMContentLoaded", function (event) {
 
@@ -139,9 +166,10 @@ $(function () { // to do when the page loads
 	});
 
 	// Load Articles Index
-	b.loadArticlesIndex = function () {
+	b.loadArticlesIndex = function (loadID) {
 		showLoading("#main-content");
-		$ajaxUtils.sendGetRequest(allArticlesUrl,buildAndShowArticlesHTML);	
+		$ajaxUtils.sendGetRequest(allArticlesUrl,buildAndShowArticlesHTML);
+		resetClassAndStyle();	
 	};
 
 	// Builds HTML for the Articles Index page based on the data from the server
@@ -181,6 +209,7 @@ $(function () { // to do when the page loads
 	b.loadPoemsIndex = function () {
 		showLoading("#main-content");
 		$ajaxUtils.sendGetRequest(allPoemsUrl,buildAndShowPoemsHtml);
+		resetClassAndStyle();
 	};
 
 	// Builds HTML for the Poems Index page based on the data from the server
@@ -219,6 +248,7 @@ $(function () { // to do when the page loads
 	b.loadThoughtsIndex = function () {
 		showLoading("#main-content");
 		$ajaxUtils.sendGetRequest(allThoughtsUrl,buildAndShowThoughtsHtml);
+		resetClassAndStyle();
 	};
 
 	// Builds HTML for the Thoughts Index page based on the data from the server
@@ -257,6 +287,7 @@ $(function () { // to do when the page loads
 	b.loadQuotes = function () {
 		showLoading("#main-content");
 		$ajaxUtils.sendGetRequest(allQuotesUrl,buildAndShowQuotesHtml);
+		resetClassAndStyle();
 	};
 
 	// Builds HTML for the Quotes Index page based on the data from the server
@@ -408,15 +439,19 @@ $(function () { // to do when the page loads
 		return finalHTML;
 	}
 
-	// On first load, show home view
+	// Load About Page
 	b.loadAbout = function () {
-		showLoading("#main-container");
+		document.querySelector("#left-bar").style.display = 'none';
+		document.querySelector("#left-bar-bottom").style.display = 'none';
+		document.querySelector("#right-bar").style.display = 'none';
+		showLoading("#main-content");		
 		$ajaxUtils.sendGetRequest(
 			aboutHtml, 
 			function (responseText) {
+				// document.querySelector("#main-container aside").innerHTML = "";
+				document.querySelector("#main-content").innerHTML = responseText;
 				// Switch CSS class active to About button
 				switchToActive("About");
-				document.querySelector("#main-container").innerHTML = responseText;
 			},
 		false);
 
@@ -426,7 +461,52 @@ $(function () { // to do when the page loads
 				document.querySelector("#socials").innerHTML = responseText;
 			},
 		false);
+
+		var classes;
+		classes = document.querySelector('#left-bar').className;
+		classes = "";
+		document.querySelector('#left-bar').className = classes;
+
+		classes = document.querySelector('#left-bar-bottom').className;
+		classes = "";
+		document.querySelector('#left-bar-bottom').className = classes;
+
+		classes = document.querySelector('#main-content').className;
+		classes = classes.replace(new RegExp("col-lg-7","g"),"col-lg-12");
+		document.querySelector('#main-content').className = classes;
 	}
+
+	// // Load Home Page and then the required Page when navigating from About Page
+	// b.loadFromAbout = function(navigator) {
+	// 	// console.log(navigator);
+	// 	showLoading("#body");
+	// 	// $ajaxUtils.sendGetRequest(
+	// 	// 	indexHtml, 
+	// 	// 	function (responseText) {
+	// 	// 		document.querySelector("#body").innerHTML = responseText;
+	// 	// 	},
+	// 	// false);
+	// 	window.location.href = indexHtml;
+	// 	switch (navigator)
+	// 	{
+	// 		case 'Articles':
+	// 			b.loadArticlesIndex();
+	// 			break;
+	// 		case 'Poems':
+	// 			b.loadPoemsIndex();
+	// 			break;
+	// 		case 'Thoughts':
+	// 			b.loadThoughtsIndex();
+	// 			break;
+	// 		case 'Quotes':
+	// 			b.loadQuotesIndex();
+	// 			break;
+	// 		case 'About':
+	// 			b.loadAboutIndex();
+	// 			break;
+	// 		default: console.log("ERROR");
+	// 	}
+	// }
 
   	global.$b = b;
 })(window);

@@ -163,7 +163,7 @@ footer {
 	border-radius: 10px;
 	margin: 1em 0.5em;
 	padding: 10px;
-	font-size: 0.75em;
+	font-size: 1em;
 }
 
 #about-page-top {
@@ -173,6 +173,14 @@ footer {
 
 #about-page-bottom {
 	margin-right: 15px;	
+}
+
+#contact-me {
+	background-color: #2e2e2e;
+	border-radius: 10px;
+	margin: 1em 0.5em;
+	padding: 10px;
+	/* font-size: 1em; */
 }
 
 #contact-me-title {
@@ -195,6 +203,10 @@ div#socials > a {
 	margin: 1em 0em;
 	background-color: rgba(0, 0, 0, .30);
 	font-size: 0.75em;
+}
+
+.about-row > .about-bottom {
+	font-size: 15em;
 }
 
 
@@ -260,7 +272,7 @@ div#socials > a {
 @media (min-width: 992px) {
 
 /* SIDE BAR */
-/* 
+
 .side-bar {
 	align-content: center;
 	border-radius: 10px;
@@ -271,7 +283,10 @@ div#socials > a {
 
 .dp {
 	padding: 0px;
-	margin: 20px 0px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-right: 10px;
+	margin-left: -15px;
 	border-style: solid;
 	border-radius: 50%;
 	border-width: 2.5px;
@@ -280,47 +295,14 @@ div#socials > a {
 	-webkit-border-radius: 50%;
 }
 
-#left-bar {
-	font-size: 1em;
+#left-bar-name {
+	padding: 0px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-right: 15px;
+	margin-left: -15px;
 }
 
-#left-bar-bottom {
-	font-size: 1em;
-}
-
-#left-bar-about {
-	background-color: #2e2e2e;
-	border-radius: 10px;
-	margin: 1em 0.5em;
-	padding: 10px;
-	font-size: 0.75em;
-}
-
-#left-bar-about-bottom {
-	background-color: #2e2e2e;
-	border-radius: 10px;
-	margin: 1em 0.5em;
-	padding: 10px;
-	font-size: 0.75em;
-}
-
-#right-bar-title {
-	padding-bottom: 15px;
-	font-weight: bold;
-}
-
-.channel-type {
-	font-size: 0.6em;
-}
-
-a:hover.link-text , a:focus.link-text {
-	text-decoration: none;
-}
-
-a.link-text {
-	color: #e8e8e8;
-}
- */
 /* END SIDE BAR */	
 
 /* ABOUT PAGE */
@@ -330,12 +312,12 @@ a.link-text {
 	}
 
 	.social-icons {
-		height: 3em;
-		width: 3em;
+		height: 2.2em;
+		width: 2.2em;
 	}
 
 	div#socials > a {
-		padding: 0.4em;
+		padding: 0.3em;
 	}
 
 }
@@ -344,6 +326,32 @@ a.link-text {
 
 /* // Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
+
+/* SIDE BAR */
+
+	.dp {
+		padding: 0px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		margin-right: 20px;
+		margin-left: 5px;
+		border-style: solid;
+		border-radius: 50%;
+		border-width: 2.5px;
+		border-color: #009AB3; 
+		-moz-border-radius: 50%;
+		-webkit-border-radius: 50%;
+	}
+
+	#left-bar-name {
+		padding: 0px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		margin-right: 20px;
+		margin-left: 0px;
+	}
+
+/* END SIDE BAR */
 
 /* ABOUT PAGE */
 	

@@ -78,9 +78,10 @@ $(function () { // to do when the page loads
 	    removeActive("#navPoems");
 	    removeActive("#navThoughts");
 	    removeActive("#navQuotes");
+	    removeActive("#navAbout");
 
 	    if (snippet=="Articles") {
-	      // Add 'active' to menu button if not already there
+	      // Add 'active' to Articles button if not already there
 	      classes = document.querySelector("#navArticles").className;
 	      if (classes.indexOf("active") == -1) {
 	        classes += " active";
@@ -88,7 +89,7 @@ $(function () { // to do when the page loads
 	      }
 	    }
 	    else if (snippet=="Poems") {
-	      // Add 'active' to about button if not already there
+	      // Add 'active' to Poems button if not already there
 	      classes = document.querySelector("#navPoems").className;
 	      if (classes.indexOf("active") == -1) {
 	        classes += " active";
@@ -96,7 +97,7 @@ $(function () { // to do when the page loads
 	      }
 	    }
 	    else if (snippet=="Thoughts") {
-	      // Add 'active' to awards button if not already there
+	      // Add 'active' to Thoughts button if not already there
 	      classes = document.querySelector("#navThoughts").className;
 	      if (classes.indexOf("active") == -1) {
 	        classes += " active";
@@ -104,11 +105,19 @@ $(function () { // to do when the page loads
 	      }
 	    }
 	    else if (snippet=="Quotes") {
-	      // Add 'active' to awards button if not already there
+	      // Add 'active' to Quotes button if not already there
 	      classes = document.querySelector("#navQuotes").className;
 	      if (classes.indexOf("active") == -1) {
 	        classes += " active";
 	        document.querySelector("#navQuotes").className = classes;
+	      }
+	    }
+	    else if (snippet=="About") {
+	      // Add 'active' to About button if not already there
+	      classes = document.querySelector("#navAbout").className;
+	      if (classes.indexOf("active") == -1) {
+	        classes += " active";
+	        document.querySelector("#navAbout").className = classes;
 	      }
 	    }
   	};
@@ -392,6 +401,8 @@ $(function () { // to do when the page loads
 		$ajaxUtils.sendGetRequest(
 			aboutHtml, 
 			function (responseText) {
+				// Switch CSS class active to About button
+				switchToActive("About");
 				document.querySelector("#main-container").innerHTML = responseText;
 			},
 		false);

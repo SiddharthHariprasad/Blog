@@ -176,6 +176,10 @@ footer {
 	width: 50px;
 }
 
+div#socials > a {
+	padding: 5px;
+}
+
 
 
 /* END ABOUT PAGE */

@@ -10,9 +10,10 @@ body {
 }
 
 hr {
-	min-width:85%; 
+	width: 92%; 
 	background-color:#a1a1a1; 
 	height:1px;
+	margin-left: 0em;
 }
 
 
@@ -271,6 +272,10 @@ div#socials > a {
 		margin-left: -1em;
 	}
 
+	hr {
+		margin: 0px;
+	}
+
 	/* END BODY */
 
 	/* ABOUT PAGE */
@@ -293,6 +298,10 @@ div#socials > a {
 
 	#main-content, #left-bar-bottom, #right-bar {
 		margin-left: -1em;
+	}
+
+	hr{
+		margin-left: 0em;
 	}
 
 	/* END BODY */

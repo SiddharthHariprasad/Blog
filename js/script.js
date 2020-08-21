@@ -442,6 +442,8 @@ $(function () { // to do when the page loads
 		document.querySelector("#left-bar").style.display = 'none';
 		document.querySelector("#left-bar-bottom").style.display = 'none';
 		document.querySelector("#right-bar").style.display = 'none';
+		document.querySelector("#hr-1").style.display = 'none';
+		document.querySelector("#hr-2").style.display = 'none';
 		showLoading("#main-content");		
 		$ajaxUtils.sendGetRequest(
 			aboutHtml, 
@@ -468,6 +470,14 @@ $(function () { // to do when the page loads
 		classes = document.querySelector('#left-bar-bottom').className;
 		classes = "";
 		document.querySelector('#left-bar-bottom').className = classes;
+
+		classes = document.querySelector('#hr-1').className;
+		classes = "";
+		document.querySelector('#hr-1').className = classes;
+
+		classes = document.querySelector('#hr-2').className;
+		classes = "";
+		document.querySelector('#hr-2').className = classes;
 
 		classes = document.querySelector('#main-content').className;
 		classes = classes.replace(new RegExp("col-lg-7","g"),"col-lg-12");

@@ -40,7 +40,7 @@ $(function () { // to do when the page loads
 	var singleThoughtHtml = "snippets/singleThought-snippet.html";
 	// var thoughtUrl = "";
 	var aboutHtml = "snippets/about-snippet.html";
-	var svgHtml = "snippets/social-icons-snippet.html";
+	var svgHtml = "snippets/socials.html";
 	var articleID = "";
 	var poemID = "";
 	var thoughtID = "";

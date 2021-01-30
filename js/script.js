@@ -166,7 +166,7 @@ $(function () { // to do when the page loads
 	});
 
 	// Load Articles Index
-	b.loadArticlesIndex = function (loadID) {
+	b.loadArticlesIndex = function () {
 		showLoading("#main-content");
 		$ajaxUtils.sendGetRequest(allArticlesUrl,buildAndShowArticlesHTML);
 		resetClassAndStyle();	

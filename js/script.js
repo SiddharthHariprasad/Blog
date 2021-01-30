@@ -26,11 +26,11 @@ $(function () { // to do when the page loads
 	var indexHtml = "index.html";
 	var homeHtml = "snippets/home-snippet.html";
 	var articlesHtml = "snippets/article-index-snippet.html";
-	var allArticlesUrl = "JSON/articles.json"
+	var allArticlesUrl = "JSON/articles.json";
 	var poemsHtml = "snippets/poem-index-snippet.html";
-	var allPoemsUrl = "JSON/poems.json"
+	var allPoemsUrl = "JSON/poems.json";
 	var thoughtsHtml = "snippets/thought-index-snippet.html";
-	var allThoughtsUrl = "JSON/thoughts.json"
+	var allThoughtsUrl = "JSON/thoughts.json";
 	var quotesHtml = "snippets/quote-snippet.html";
 	var allQuotesUrl = "JSON/quotes.json";
 	var singleArticleHtml = "snippets/singleArticle-snippet.html";

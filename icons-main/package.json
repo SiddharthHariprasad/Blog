@@ -57,7 +57,8 @@
     "stylelint": "^13.13.1",
     "stylelint-config-twbs-bootstrap": "^2.2.0",
     "svgo": "^2.3.0",
-    "vnu-jar": "21.4.9"
+    "vnu-jar": "21.4.9",
+    "xmldom": ">=0.5.0"
   },
   "engines": {
     "node": ">=10"

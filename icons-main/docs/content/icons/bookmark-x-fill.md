@@ -1,8 +1,11 @@
 ---
 title: Bookmark x fill
 categories:
-  - Misc
+  - Miscellaneous
 tags:
   - reading
   - book
+  - label
+  - tag
+  - category
 ---

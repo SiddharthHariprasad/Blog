@@ -1,8 +1,11 @@
 ---
 title: Bookmark heart
 categories:
-  - Misc
+  - Miscellaneous
 tags:
   - reading
   - book
+  - label
+  - tag
+  - category
 ---

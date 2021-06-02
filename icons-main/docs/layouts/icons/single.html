@@ -1,119 +1,132 @@
 <!doctype html>
 <html lang="en">
   <head>
-    {{ partial "header" . }}
+    {{ partial "head" . }}
   </head>
   <body id="icons-body">
-    {{ partial "skippy" . }}
-    {{ partial "navbar" . }}
+    {{ partialCached "skippy" . }}
+    {{ partialCached "navbar" . }}
 
-    <main class="container" id="content" role="main">
-      <nav>
-        <ul class="breadcrumb my-4 text-muted bg-transparent p-0">
+    <main class="container icon-examples" id="content">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb my-4 p-0">
           <li class="breadcrumb-item"><a href="/">Icons</a></li>
-          <li class="breadcrumb-item">{{ .Title }}</li>
-        </ul>
+          <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+        </ol>
       </nav>
 
       <div class="row align-items-md-center">
-        <div class="col-md-6 col-lg-7">
+        <div class="col-md-6 col-lg-8">
           <h1>{{ .Title }}</h1>
-          <p class="mb-3 mb-md-0">Tags: {{ with .Params.tags }}{{ delimit . ", " }}{{ end }}</p>
+
+          {{ if or .Params.tags .Params.categories -}}
+          <ul class="list-unstyled mb-3 mb-md-0">
+            {{ with .Params.tags }}<li><strong>Tags:</strong> {{ delimit . ", " }}</li>{{ end }}
+            {{ with .Params.categories }}<li><strong>Category:</strong> {{ delimit . ", " }}</li>{{ end }}
+          </ul>
+          {{- end }}
         </div>
-        <div class="col-md-6 col-lg-5">
-          <script async src="https://cdn.carbonads.com/carbon.js?serve=CE7D4277&placement=iconsgetbootstrapcom" id="_carbonads_js"></script>
+        <div class="col-md-6 col-lg-4">
+          {{ partialCached "ads" . }}
         </div>
       </div>
 
       <hr class="my-4">
 
-      {{- $filenameWithExt := split .Name "." -}}
-      {{- $filename := index $filenameWithExt 0 -}}
-      {{- $name := humanize $filename -}}
+      {{- $localSvgPath := printf "/icons/%s.svg" .File.TranslationBaseName -}}
+      {{- $svgPath := path.Join "/assets/" $localSvgPath -}}
+      {{- $svgHtml := readFile $localSvgPath | chomp | safeHTML -}}
 
-      <div class="row mb-4">
-        <div class="col-lg-6">
-          <div class="d-flex align-items-center justify-content-center p-3 py-5 mb-2 bg-light rounded" style="font-size: 20em;">
-            {{ readFile (printf "/%s/%s.svg" "icons" .File.TranslationBaseName) | chomp | safeHTML }}
+      <div class="row gx-lg-5">
+        <div class="col-lg-8 mb-4">
+          <div class="icon-demo mb-4 border rounded-3 d-flex align-items-center justify-content-center p-3 py-6" style="font-size: 10em" role="img" aria-label="{{ .Title }} - large preview">
+            {{ $svgHtml }}
+          </div>
+
+          <h2>Examples</h2>
+          <div class="p-3 p-md-4 border rounded-3 icon-demo-examples">
+            <div class="fs-2 mb-3">
+              {{ $svgHtml }}
+              Heading
+            </div>
+            <div class="fs-4 mb-3">
+              {{ $svgHtml }}
+              Smaller heading
+            </div>
+            <p>
+              Inline text {{ $svgHtml }}
+            </p>
+            <p>
+              <a href="#" class="text-decoration-none">
+                Example link text
+                {{ $svgHtml }}
+              </a>
+            </p>
+            <p>
+              <button type="button" class="btn btn-primary">
+                {{ $svgHtml }}
+                Button
+              </button>
+              <button type="button" class="btn btn-success">
+                {{ $svgHtml }}
+                Button
+              </button>
+              <button type="button" class="btn btn-outline-danger">
+                {{ $svgHtml }}
+                Button
+              </button>
+            </p>
+            <p>
+              <button type="button" class="btn btn-secondary">
+                {{ $svgHtml }}
+              </button>
+            </p>
+            <div class="btn-group mb-3">
+              <button type="button" class="btn btn-outline-secondary">
+                {{ $svgHtml }}
+                <span class="visually-hidden">Button</span>
+              </button>
+              <button type="button" class="btn btn-outline-secondary">
+                {{ $svgHtml }}
+                <span class="visually-hidden">Button</span>
+              </button>
+              <button type="button" class="btn btn-outline-secondary">
+                {{ $svgHtml }}
+                <span class="visually-hidden">Button</span>
+              </button>
+            </div>
+            <div class="input-group w-50">
+              <span class="input-group-text" id="basic-addon1">
+                {{ $svgHtml }}
+              </span>
+              <input type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="basic-addon1">
+            </div>
           </div>
         </div>
-        <div class="col-lg-3">
-          <div class="d-flex align-items-center justify-content-center p-3 py-5 mb-2 bg-light rounded" style="font-size: 10em">
-            {{ readFile (printf "/%s/%s.svg" "icons" .File.TranslationBaseName) | chomp | safeHTML }}
+        <div class="col-lg-4 mb-4">
+          <h2 class="fs-3">Download</h2>
+          <p>Download the SVG to use or edit.</p>
+          <a href="{{ $svgPath }}" class="btn btn-bd-primary mb-4" download>Download SVG</a>
+
+          <h2 class="fs-3">Icon font</h2>
+          <p>Using the web font? Copy, paste, and go.</p>
+
+          <div class="mb-4">
+            {{ $iconFontSnippet := printf `<i class="bi bi-%s"></i>` .File.TranslationBaseName -}}
+            {{- highlight $iconFontSnippet "html" "" }}
           </div>
-        </div>
-        <div class="col-lg-2">
-          <div class="d-flex align-items-center justify-content-center p-3 py-5 mb-2 bg-light rounded" style="font-size: 2em">
-            {{ readFile (printf "/%s/%s.svg" "icons" .File.TranslationBaseName) | chomp | safeHTML }}
-          </div>
-        </div>
-        <div class="col-lg-1">
-          <div class="d-flex align-items-center justify-content-center p-2 p-md-3 py-lg-4 mb-2 bg-light rounded" style="font-size: 1em">
-            {{ readFile (printf "/%s/%s.svg" "icons" .File.TranslationBaseName) | chomp | safeHTML }}
-          </div>
+
+          <h2 class="fs-3">Copy HTML</h2>
+          <p>Paste the SVG right into your project's code.</p>
+
+          <div id="copy-error-callout" class="alert alert-info d-none" role="alert"></div>
+
+          {{ highlight $svgHtml "html" "" }}
         </div>
       </div>
-
-      <h2>Copy HTML</h2>
-
-      <div id="copy-error-callout" class="alert alert-info d-none" role="alert"></div>
-
-      {{ $source := readFile (printf "/%s/%s.svg" "icons" .File.TranslationBaseName) -}}
-      {{ highlight $source "html" "" }}
-
-      <h2>Examples</h2>
-      <p>
-        <a href="#" title="Placeholder link title" class="text-decoration-none">
-          Example link text
-          {{ readFile (printf "/%s/%s.svg" "icons" .File.TranslationBaseName) | chomp | safeHTML }}
-        </a>
-      </p>
-      <p>
-        <button type="button" class="btn btn-outline-primary">
-          Example button
-          {{ readFile (printf "/%s/%s.svg" "icons" .File.TranslationBaseName) | chomp | safeHTML }}
-        </button>
-        <button type="button" class="btn btn-outline-primary">
-          {{ readFile (printf "/%s/%s.svg" "icons" .File.TranslationBaseName) | chomp | safeHTML }}
-        </button>
-      </p>
     </main>
 
-    {{- partial "footer" . }}
-
-    <script src="/assets/js/clipboard.min.js"></script>
-    <script>
-      var btnHtml = '<div class="bd-clipboard"><button type="button" class="btn-clipboard" title="Copy to clipboard">Copy</button></div>';
-
-      [].slice.call(document.querySelectorAll('figure.highlight, div.highlight'))
-        .forEach(function (element) {
-          element.insertAdjacentHTML('beforebegin', btnHtml)
-        });
-
-      var clipboard = new ClipboardJS('.btn-clipboard', {
-        target: function (trigger) {
-          return trigger.parentNode.nextElementSibling
-        }
-      })
-
-      clipboard.on('success', function (e) {
-        e.clearSelection()
-        e.trigger.textContent = 'Copied!'
-        setTimeout(function () {
-          e.trigger.textContent = 'Copy'
-        }, 2000);
-      })
-
-      clipboard.on('error', function () {
-        var modifierKey = /mac/i.test(navigator.userAgent) ? '\u2318' : 'Ctrl-'
-        var fallbackMsg = 'Press ' + modifierKey + 'C to copy'
-        var errorElement = document.getElementById('copy-error-callout')
-
-        if (!errorElement) return
-
-        errorElement.classList.remove('d-none')
-        errorElement.insertAdjacentHTML('afterbegin', fallbackMsg)
-      })
-    </script>
+    {{- partialCached "footer" . }}
+    {{- partialCached "scripts" . "default" }}
   </body>
 </html>

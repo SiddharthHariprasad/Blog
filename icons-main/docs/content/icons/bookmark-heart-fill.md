@@ -1,8 +1,11 @@
 ---
 title: Bookmark heart fill
 categories:
-  - Misc
+  - Miscellaneous
 tags:
   - reading
   - book
+  - label
+  - tag
+  - category
 ---

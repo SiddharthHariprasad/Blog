@@ -34,11 +34,8 @@ $(function () { // to do when the page loads
 	var quotesHtml = "snippets/quote-snippet.html";
 	var allQuotesUrl = "JSON/quotes.json";
 	var singleArticleHtml = "snippets/singleArticle-snippet.html";
-	// var articleUrl = "";
 	var singlePoemHtml = "snippets/singlePoem-snippet.html";
-	// var poemUrl = "";
 	var singleThoughtHtml = "snippets/singleThought-snippet.html";
-	// var thoughtUrl = "";
 	var aboutHtml = "snippets/about-snippet.html";
 	var svgHtml = "snippets/socials.html";
 	var articleID = "";

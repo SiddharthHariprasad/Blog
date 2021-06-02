@@ -1,5 +1,0 @@
----
-title: Gmail
-categories:
-tags:
----

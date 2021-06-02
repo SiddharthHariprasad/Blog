@@ -1,24 +1,25 @@
 name: Deploy
 
 on:
-  push:
-    tags:
-      - '*'
+  release:
+    types:
+      - published
 
 env:
-  CI: true
-  NODE: 12.x
+  FORCE_COLOR: 2
+  NODE: 14.x
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    if: github.repository == 'twbs/icons'
 
     steps:
       - name: Clone repository
         uses: actions/checkout@v2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: "${{ env.NODE }}"
 
@@ -26,10 +27,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-v${{ env.NODE }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ env.NODE }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}
           restore-keys: |
-            ${{ runner.OS }}-node-v${{ env.NODE }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}
-            ${{ runner.OS }}-node-v${{ env.NODE }}-
+            ${{ runner.os }}-node-${{ env.NODE }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}
 
       - name: Install npm dependencies
         run: npm ci

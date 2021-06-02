@@ -1,8 +1,11 @@
 ---
 title: Bookmarks
 categories:
-  - Misc
+  - Miscellaneous
 tags:
   - reading
   - book
+  - label
+  - tag
+  - category
 ---

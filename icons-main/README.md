@@ -7,31 +7,30 @@
 <h3 align="center">Bootstrap Icons</h3>
 
 <p align="center">
-  Official open source SVG icon library for Bootstrap.
+  Official open source SVG icon library for Bootstrap with over 1,300 icons.
   <br>
   <a href="https://icons.getbootstrap.com/"><strong>Explore Bootstrap Icons »</strong></a>
   <br>
   <br>
-  <a href="https://getbootstrap.com/docs/4.5/">Bootstrap</a>
+  <a href="https://getbootstrap.com/">Bootstrap</a>
   ·
   <a href="https://themes.getbootstrap.com/">Themes</a>
   ·
   <a href="https://blog.getbootstrap.com/">Blog</a>
+  <br>
 </p>
 
-## 1,000+ icons
-
-![Bootstrap Icons full set](https://user-images.githubusercontent.com/98681/85891337-be640680-b7a3-11ea-84a0-0a103fce118c.png)
-
-[Also available in Figma.](https://www.figma.com/file/hTJtQ2MrMTeNVmYrVBqNZZ/Bootstrap-Icons-v1.0.0-alpha5?node-id=0%3A1)
+[![Bootstrap Icons preview](https://github.com/twbs/icons/blob/main/.github/preview.png)](https://icons.getbootstrap.com)
 
 ## Install
 
 Bootstrap Icons are packaged up and published to npm. We only include the processed SVGs in this package—it's up to you and your team to implement. [Read our docs](https://icons.getbootstrap.com/) for usage instructions.
 
 ```shell
-npm i bootstrap-icons --save
+npm i bootstrap-icons
 ```
+
+[Also available in Figma.](https://www.figma.com/community/file/972989644486753519/Bootstrap-Icons-v1.5.0)
 
 ## Usage
 
@@ -72,7 +71,7 @@ Here are some key scripts you'll use during development. Be sure to look to our 
 
 ## Adding SVGs
 
-Once a new SVG icon has been added to the `icons` directory, you'll need to optimize them. An npm script is used to:
+Icons are typically only added by @mdo, but exceptions can be made. New glyphs are designed in Figma first on a 16x16px grid, then exported as flattened SVGs with `fill` (no stroke). Once a new SVG icon has been added to the `icons` directory, we use an npm script to:
 
 1. Optimize our SVGs with SVGO.
 2. Modify the SVGs source HTML, removing all attributes before setting new attributes and values in our preferred order.
@@ -81,7 +80,7 @@ Use `npm run icons` to run the script, run `npm run pages` to build permalink pa
 
 ## Publishing
 
-Documentation is published automatically when a new Git tag is published. See our GitHub Actions and `package.json` for more information.
+Documentation is published automatically when a new Git tag is published. See our [GitHub Actions](https://github.com/twbs/icons/tree/main/.github/workflows) and [`package.json`](https://github.com/twbs/icons/blob/main/package.json) for more information.
 
 ## License
 

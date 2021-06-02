@@ -13,4 +13,10 @@ updates:
     labels:
       - dependencies
     versioning-strategy: increase
-    rebase-strategy: disabled
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: tuesday
+      time: "12:00"
+      timezone: Europe/Athens
